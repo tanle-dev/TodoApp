@@ -30,13 +30,21 @@ export default function App() {
 
   const Tab = createBottomTabNavigator()
 
+  const onAddBtnClicked = (newTask) => {
+    setTasks([...tasks, {
+      id: uuid(),
+      title: newTask.title,
+      status: newTask.status
+    }])
+  }
+
   return (
     <View style={styles.container}>
       <Header></Header>
       <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen style={{display:'none'}} name="Tasks">{props => <Tasks tasks={tasks}/>}</Tab.Screen>
-          <Tab.Screen name="Add Task" component={Form}></Tab.Screen>
+          <Tab.Screen name="Tasks">{props => <Tasks tasks={tasks}/>}</Tab.Screen>
+          <Tab.Screen name="Add Task">{props => <Form onAddTask={onAddBtnClicked}/>}</Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
     </View>

@@ -2,12 +2,16 @@ import { useState } from "react";
 import { Pressable, Switch, Text, TextInput, View } from "react-native";
 import { styles } from "./styles";
 
-export function Form(){
+export function Form(props){
+
+    const {onAddTask} = props
 
     const [taskDescription, setTaskDescription] = useState("")
     const [statusValue, setStatusValue] = useState(false)
+    const [errorMessage, setErrorMessage] = useState(false)
 
     const handleDescriptionChange = (value) => {
+        setErrorMessage(false)
         setTaskDescription(value)
     }
 
@@ -15,12 +19,27 @@ export function Form(){
         setStatusValue(value)
     }
 
+    const handleAddBtnClicked = () => {
+        if(taskDescription != ""){
+            const newTask = {
+                title: taskDescription,
+                status: statusValue
+            }
+
+            onAddTask(newTask)
+            setStatusValue(false)
+            setTaskDescription("")
+        }else{
+            setErrorMessage(true)
+        }
+    }
+
     return (
         <View style={styles.container}>
             {/* <Text>Add Task</Text> */}
 
             {
-                taskDescription == '' && (
+                errorMessage && (
                     <View style = {styles.attention}>
                         <Text>Attention:</Text>
                         <Text>The Description is required!</Text>
@@ -45,7 +64,10 @@ export function Form(){
                 <Text style={{color:'green'}}>Completed</Text>
             </View>
 
-            <Pressable style={styles.add_btn}>
+            <Pressable 
+            style={styles.add_btn}
+            onPress={handleAddBtnClicked}
+            >
                 <Text style={styles.title_btn}>ADD</Text>
             </Pressable>
 
