@@ -35,12 +35,10 @@ export default function App() {
       <Header></Header>
       <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen name="Tasks">{props => <Tasks tasks={tasks}/>}</Tab.Screen>
+          <Tab.Screen style={{display:'none'}} name="Tasks">{props => <Tasks tasks={tasks}/>}</Tab.Screen>
           <Tab.Screen name="Add Task" component={Form}></Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
-      {/* <Tasks tasks={tasks}></Tasks> */}
-      {/* <StatusBar style="auto" /> */}
     </View>
   );
 }
