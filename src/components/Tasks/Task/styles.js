@@ -25,5 +25,43 @@ export const styles = StyleSheet.create({
     id:{
         color: '#333',
         marginVertical: 2
+    },
+    modal_container:{
+        flex: 1,
+        marginTop: 35,
+        backgroundColor: 'rgba(0,0,0,0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // transform: 'translateY(20)'
+    },
+    modal_content:{
+        backgroundColor: '#fff',
+        width: '80%',
+        padding: '10%',
+        borderRadius: 30
+    },
+    close:{
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        marginEnd: -25,
+        marginTop: -20,
+    },
+    modal_title:{
+        fontSize: 28,
+        fontWeight: '600',
+        marginTop: -20,
+        marginBottom: 30,
+        color: '#00BFFF',
+    },
+    option:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 20
+    },
+    option_item:{
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })

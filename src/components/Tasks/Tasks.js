@@ -6,14 +6,14 @@ import { styles } from "./styles";
 export function Tasks(props){
     const {tasks} = props
     return (
-        <View style={styles.container}>
-            <ScrollView>
-                {
-                    tasks.map((task, index) => (
-                        <Task key={index} task={task}></Task>
-                    ))
-                }
-            </ScrollView>
-        </View>
+            <View style={styles.container}>
+                    <ScrollView>
+                        {
+                            tasks.map((task, index) => (
+                                <Task key={index} task={task}></Task>
+                            ))
+                        }
+                    </ScrollView>
+            </View>
     )
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Pressable, Switch, Text, TextInput, View } from "react-native";
+import { Keyboard, Pressable, Switch, Text, TextInput, View } from "react-native";
 import { styles } from "./styles";
 
 export function Form(props){
@@ -29,6 +29,8 @@ export function Form(props){
             onAddTask(newTask)
             setStatusValue(false)
             setTaskDescription("")
+
+            Keyboard.dismiss()
         }else{
             setErrorMessage(true)
         }
@@ -41,7 +43,7 @@ export function Form(props){
             {
                 errorMessage && (
                     <View style = {styles.attention}>
-                        <Text>Attention:</Text>
+                        <Text style={{color:'red'}}>Attention:</Text>
                         <Text>The Description is required!</Text>
                     </View>
                 )
@@ -64,7 +66,7 @@ export function Form(props){
                 <Text style={{color:'green'}}>Completed</Text>
             </View>
 
-            <Pressable 
+            <Pressable
             style={styles.add_btn}
             onPress={handleAddBtnClicked}
             >
