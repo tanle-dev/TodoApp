@@ -4,13 +4,13 @@ import { styles } from "./styles";
 
 
 export function Tasks(props){
-    const {tasks} = props
+    const {tasks, onStatusChange, onDeleteClicked} = props
     return (
             <View style={styles.container}>
                     <ScrollView>
                         {
                             tasks.map((task, index) => (
-                                <Task key={index} task={task}></Task>
+                                <Task key={index} task={task} onStatusChange={onStatusChange} onDeleteClicked={onDeleteClicked}></Task>
                             ))
                         }
                     </ScrollView>

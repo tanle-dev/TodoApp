@@ -38,13 +38,61 @@ export default function App() {
     }])
   }
 
+  const onStatusChange = (id) => {
+    const updateTasks = tasks.map((task) => {
+        if(id == task.id){
+          task.status = !task.status
+        }
+        return task
+    })
+    setTasks(updateTasks)
+  }
+
+  const onDeleteClicked = (id) => {
+    const updateTasks = tasks.filter(task => task.id != id)
+    setTasks(updateTasks)
+  }
+
   return (
     <View style={styles.container}>
       <Header></Header>
       <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen name="Tasks">{props => <Tasks tasks={tasks}/>}</Tab.Screen>
-          <Tab.Screen name="Add Task">{props => <Form onAddTask={onAddBtnClicked}/>}</Tab.Screen>
+          <Tab.Screen 
+            name="Tasks"
+            options={{
+              title: 'Task Board',
+              headerStyle: {
+              backgroundColor: '#fff',
+              },
+              headerTintColor: '#00B0F0',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                padding: 10,
+                fontSize: 22,
+              }
+              }}
+            >
+              {props => <Tasks 
+              tasks={tasks} 
+              onStatusChange={onStatusChange} 
+              onDeleteClicked={onDeleteClicked}/>
+            }</Tab.Screen>
+          <Tab.Screen 
+            name="Add Task"
+            options={{
+              title: 'Add Task',
+              headerStyle: {
+              backgroundColor: '#fff',
+              },
+              headerTintColor: '#00B0F0',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                padding: 10,
+                fontSize: 22,
+              }
+              }}
+          >{props => <Form onAddTask={onAddBtnClicked} />}</Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
     </View>

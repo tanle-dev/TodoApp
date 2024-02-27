@@ -1,10 +1,10 @@
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
-import { Modal, Pressable, Switch, Text, View } from "react-native";
+import { Alert, Modal, Pressable, Switch, Text, View } from "react-native";
 import { styles } from "./styles";
 
 export function Task(props){
-    const {task} = props
+    const {task, onStatusChange, onDeleteClicked} = props
 
     const [visualizeModal, setVisualizeModal] = useState(false)
 
@@ -16,14 +16,27 @@ export function Task(props){
         setVisualizeModal(false)
     }
 
-    const onStatusChanged = () => {
-        
+    const onDeleteClick = () => {
+        Alert.alert(
+            'Remove Task',
+            'This action will permanently delete this task. This action cannot be undone!', 
+            [
+            {
+              text: 'Confirm',
+              onPress: () => {
+                onDeleteClicked(task.id)
+                19
+                setVisualizeModal(false)
+              }
+            },
+            {
+              text: 'Cancel'
+            }
+            ]);
     }
 
-    const onDeleteClicked = () => {}
-
     const onSwitchClicked = () => {
-
+        onStatusChange(task.id)
     }
 
     return(
@@ -47,15 +60,15 @@ export function Task(props){
                         </Pressable>
                         <Text style={styles.modal_title}>{task.title}</Text>
                         <View style={styles.option}>
-                            <Pressable onPress={onStatusChanged}>
+                            <Pressable>
                                 <View style={styles.option_item}>
-                                    <Switch onChange={onSwitchClicked} value={true}></Switch>
+                                    <Switch onChange={onSwitchClicked} value={task.status}></Switch>
                                     <Text style={{color:"green"}}>Completed</Text>
                                 </View>
                             </Pressable>
                             <Pressable>
                                 <View style={styles.option_item}>
-                                    <AntDesign name='delete' style={{color:"red", margin:8}} size={32} onPress={onDeleteClicked}></AntDesign>
+                                    <AntDesign name='delete' style={{color:"red", margin:8}} size={32} onPress={onDeleteClick}></AntDesign>
                                     <Text style={{color:"red"}}>Remove</Text>
                                 </View>
                             </Pressable>
