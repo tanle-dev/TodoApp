@@ -63,13 +63,13 @@ export function Task(props){
                             <Pressable>
                                 <View style={styles.option_item}>
                                     <Switch onChange={onSwitchClicked} value={task.status}></Switch>
-                                    <Text style={{color:"green"}}>Completed</Text>
+                                    <Text style={{color:"green", marginTop: 12}}>Completed</Text>
                                 </View>
                             </Pressable>
                             <Pressable>
                                 <View style={styles.option_item}>
-                                    <AntDesign name='delete' style={{color:"red", margin:8}} size={32} onPress={onDeleteClick}></AntDesign>
-                                    <Text style={{color:"red"}}>Remove</Text>
+                                    <AntDesign name='delete' style={{color:"red"}} size={32} onPress={onDeleteClick}></AntDesign>
+                                    <Text style={{color:"red", marginTop: 12}}>Remove</Text>
                                 </View>
                             </Pressable>
                         </View>

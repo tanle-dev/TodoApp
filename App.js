@@ -1,3 +1,4 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { useState } from 'react';
@@ -58,7 +59,7 @@ export default function App() {
       <Header></Header>
       <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen 
+          <Tab.Screen
             name="Tasks"
             options={{
               title: 'Task Board',
@@ -68,17 +69,31 @@ export default function App() {
               headerTintColor: '#00B0F0',
               headerTitleStyle: {
                 fontWeight: 'bold',
-                padding: 10,
-                fontSize: 22,
-              }
-              }}
+                fontSize: 20,
+              },
+              headerShown: false,
+              tabBarActiveTintColor: '#00BFFF',
+              tabBarInactiveTintColor: 'gray',
+              tabBarIcon: ({ focused, color, size }) => {
+              const iconName = focused
+              ? 'home'
+              : 'home-outline';
+              return (
+              <MaterialCommunityIcons
+              name={iconName}
+              color={color}
+              size={size}
+              />
+              )}
+            }}
             >
-              {props => <Tasks 
-              tasks={tasks} 
-              onStatusChange={onStatusChange} 
-              onDeleteClicked={onDeleteClicked}/>
+              {props => <Tasks
+              tasks={tasks}
+              onStatusChange={onStatusChange}
+              onDeleteClicked={onDeleteClicked}
+              />
             }</Tab.Screen>
-          <Tab.Screen 
+          <Tab.Screen
             name="Add Task"
             options={{
               title: 'Add Task',
@@ -90,9 +105,22 @@ export default function App() {
                 fontWeight: 'bold',
                 padding: 10,
                 fontSize: 22,
-              }
+              },
+              tabBarActiveTintColor: '#00BFFF',
+              tabBarInactiveTintColor: 'gray',
+              tabBarIcon: ({ focused, color, size }) => {
+              const iconName = focused
+              ? 'notebook-plus'
+              : 'notebook-plus-outline';
+              return (
+              <MaterialCommunityIcons
+              name={iconName}
+              color={color}
+              size={size}
+              />
+              )}
               }}
-          >{props => <Form onAddTask={onAddBtnClicked} />}</Tab.Screen>
+          >{props => <Form {...props} onAddTask={onAddBtnClicked}/>}</Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
     </View>

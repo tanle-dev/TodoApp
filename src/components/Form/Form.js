@@ -4,7 +4,7 @@ import { styles } from "./styles";
 
 export function Form(props){
 
-    const {onAddTask} = props
+    const {onAddTask, navigation} = props
 
     const [taskDescription, setTaskDescription] = useState("")
     const [statusValue, setStatusValue] = useState(false)
@@ -31,6 +31,8 @@ export function Form(props){
             setTaskDescription("")
 
             Keyboard.dismiss()
+
+            navigation.navigate('Tasks')
         }else{
             setErrorMessage(true)
         }
