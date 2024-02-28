@@ -40,8 +40,6 @@ export function Form(props){
 
     return (
         <View style={styles.container}>
-            {/* <Text>Add Task</Text> */}
-
             {
                 errorMessage && (
                     <View style = {styles.attention}>
@@ -59,7 +57,6 @@ export function Form(props){
                 defaultValue={taskDescription}
                 style={styles.desc}
             >
-
             </TextInput>
 
             <View style={styles.status}>
@@ -74,7 +71,6 @@ export function Form(props){
             >
                 <Text style={styles.title_btn}>ADD</Text>
             </Pressable>
-
         </View>
     )
 }

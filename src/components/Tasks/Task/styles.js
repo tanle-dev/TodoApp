@@ -32,7 +32,6 @@ export const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.2)',
         justifyContent: 'center',
         alignItems: 'center',
-        // transform: 'translateY(20)'
     },
     modal_content:{
         backgroundColor: '#fff',

@@ -3,6 +3,16 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container:{
         padding: 10,
+        margin: 10,
+        backgroundColor: '#dff',
+        borderRadius: 20,
+        shadowColor: '#ccc',
+        shadowOffset: {
+            width: 0,
+            height: 4
+        },
+        shadowRadius: 4,
+        shadowOpacity: 0.8,
     },
     attention:{
         padding: 10,
@@ -19,7 +29,8 @@ export const styles = StyleSheet.create({
         height: '15%',
         backgroundColor: '#fff',
         borderRadius: 10,
-        padding: 10
+        padding: 10,
+        marginBottom: 20
     },
     status:{
         flexDirection: 'row',
@@ -28,7 +39,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
     add_btn:{
-        marginTop: 20,
+        marginTop: 40,
         width: '80%',
         marginStart: '10%',
         padding: 10,

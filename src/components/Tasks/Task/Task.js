@@ -19,7 +19,7 @@ export function Task(props){
     const onDeleteClick = () => {
         Alert.alert(
             'Remove Task',
-            'This action will permanently delete this task. This action cannot be undone!', 
+            'This action will permanently delete this task. This action cannot be undone!',
             [
             {
               text: 'Confirm',
