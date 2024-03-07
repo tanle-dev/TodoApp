@@ -56,7 +56,6 @@ export function Task(props){
                     <View style={styles.modal_content}>
                         <Pressable style={styles.close} >
                             <FontAwesome name='close' color={'red'} size={32} onPress={onCloseClicked}></FontAwesome>
-                            {/* <Text style={{color:"red"}}>Close</Text> */}
                         </Pressable>
                         <Text style={styles.modal_title}>{task.title}</Text>
                         <View style={styles.option}>
