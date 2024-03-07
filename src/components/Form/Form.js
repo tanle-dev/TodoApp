@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Keyboard, Pressable, Switch, Text, TextInput, View } from "react-native";
+import { useDispatch } from "react-redux";
+import { addNewTask } from "../../redux/tasksSlice";
 import { styles } from "./styles";
 
 export function Form(props){
 
-    const {onAddTask, navigation} = props
+    const {navigation} = props
 
     const [taskDescription, setTaskDescription] = useState("")
     const [statusValue, setStatusValue] = useState(false)
     const [errorMessage, setErrorMessage] = useState(false)
+    const dispatch = useDispatch()
 
     const handleDescriptionChange = (value) => {
         setErrorMessage(false)
@@ -26,7 +29,7 @@ export function Form(props){
                 status: statusValue
             }
 
-            onAddTask(newTask)
+            dispatch(addNewTask(newTask))
             setStatusValue(false)
             setTaskDescription("")
 

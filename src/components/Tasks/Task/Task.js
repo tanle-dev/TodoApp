@@ -1,10 +1,13 @@
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
 import { Alert, Modal, Pressable, Switch, Text, View } from "react-native";
+import { useDispatch } from "react-redux";
+import { deleteTask, updateTaskStatus } from "../../../redux/tasksSlice";
 import { styles } from "./styles";
 
 export function Task(props){
-    const {task, onStatusChange, onDeleteClicked} = props
+    const {task} = props
+    const dispatch = useDispatch()
 
     const [visualizeModal, setVisualizeModal] = useState(false)
 
@@ -24,7 +27,7 @@ export function Task(props){
             {
               text: 'Confirm',
               onPress: () => {
-                onDeleteClicked(task.id)
+                dispatch(deleteTask(task.id))
                 19
                 setVisualizeModal(false)
               }
@@ -36,7 +39,7 @@ export function Task(props){
     }
 
     const onSwitchClicked = () => {
-        onStatusChange(task.id)
+        dispatch(updateTaskStatus(task.id))
     }
 
     return(
