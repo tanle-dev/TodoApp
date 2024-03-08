@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { View } from 'react-native';
 import { Provider } from "react-redux";
+import AppLoader from "./src/components/AppLoader";
 import { Form } from './src/components/Form/Form';
 import { Header } from './src/components/Header/Header';
 import { Tasks } from './src/components/Tasks/Tasks';
@@ -16,8 +17,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Header></Header>
+      <Header/>
       <Provider store={store}>
+        <AppLoader/>
         <NavigationContainer>
           <Tab.Navigator>
             <Tab.Screen

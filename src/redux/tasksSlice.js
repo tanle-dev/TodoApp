@@ -3,21 +3,6 @@ import uuid from 'react-uuid';
 
 const initialState = {
     tasks: [
-        {
-          id: uuid(),
-          title: "Washing the Dog",
-          status: true
-        },
-        {
-          id: uuid(),
-          title: "Doing Homework",
-          status: false
-        },
-        {
-          id: uuid(),
-          title: "Feeding cats",
-          status: false
-        },
     ]
     
 }
@@ -26,6 +11,9 @@ export const tasksSlice = createSlice({
     name: 'task',
     initialState,
     reducers: {
+        setTasks: (state, action) => {
+            state.tasks = action.payload
+        },
         addNewTask: (state, action) => {
             state.tasks = [...state.tasks, {
                 id: uuid(),
@@ -48,6 +36,6 @@ export const tasksSlice = createSlice({
     }
 })
 
-export const { addNewTask, updateTaskStatus, deleteTask } = tasksSlice.actions
+export const { setTasks, addNewTask, updateTaskStatus, deleteTask } = tasksSlice.actions
 
 export default tasksSlice.reducer
