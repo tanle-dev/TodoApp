@@ -14,7 +14,6 @@ export async function load(){
             ...doc.data(),
             id: doc.id
         }
-        // console.log(newTask)
         taskList.push(newTask)
     })
 

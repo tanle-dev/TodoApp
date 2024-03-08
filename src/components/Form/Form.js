@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Keyboard, Pressable, Switch, Text, TextInput, View } from "react-native";
 import { useDispatch } from "react-redux";
+import * as database from "../../database/index";
 import { addNewTask } from "../../redux/tasksSlice";
 import { styles } from "./styles";
 
@@ -22,20 +23,30 @@ export function Form(props){
         setStatusValue(value)
     }
 
-    const handleAddBtnClicked = () => {
+    const handleAddBtnClicked = async () => {
         if(taskDescription != ""){
+
             const newTask = {
                 title: taskDescription,
-                status: statusValue
+                status: statusValue,
             }
 
-            dispatch(addNewTask(newTask))
-            setStatusValue(false)
-            setTaskDescription("")
+            const id = await database.save(newTask)
+
+            if(id){
+                newTask.id = id
+                dispatch(addNewTask(newTask))
+                
+                setStatusValue(false)
+                setTaskDescription("")
+                navigation.navigate('Tasks')
+            }
+            else{
+                setErrorMessage("Can't save data. Please try again!")
+            }
 
             Keyboard.dismiss()
 
-            navigation.navigate('Tasks')
         }else{
             setErrorMessage(true)
         }
