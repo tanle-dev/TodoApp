@@ -1,9 +1,5 @@
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "./config";
-
-
-
-
 
 export async function save(task){
     try {
@@ -16,10 +12,22 @@ export async function save(task){
     }
 }
 
-export function update(){
-    console.log('update')
+export async function update(task){
+    try {
+        const taskRef = doc(db, 'tasks', task.id)
+        await updateDoc(taskRef, {
+        status: task.status
+    })}
+    catch(error){
+        console.log(error.message)
+    }
 }
 
-export function remove(){
-    console.log('remove')
+export async function remove(id){
+    try {
+        const taskRef = doc(db, 'tasks', id)
+        await deleteDoc(taskRef);
+    } catch (error) {
+        console.log(error.message)
+    }
 }

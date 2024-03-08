@@ -2,6 +2,7 @@ import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
 import { Alert, Modal, Pressable, Switch, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
+import * as database from "../../../database/index";
 import { deleteTask, updateTaskStatus } from "../../../redux/tasksSlice";
 import { styles } from "./styles";
 
@@ -28,6 +29,7 @@ export function Task(props){
               text: 'Confirm',
               onPress: () => {
                 dispatch(deleteTask(task.id))
+                database.remove(task.id)
                 19
                 setVisualizeModal(false)
               }
@@ -40,6 +42,7 @@ export function Task(props){
 
     const onSwitchClicked = () => {
         dispatch(updateTaskStatus(task.id))
+        database.update(task)
     }
 
     return(
