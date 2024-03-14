@@ -19,7 +19,8 @@ export async function update(task){
     try {
         const taskRef = doc(db, 'tasks', task.id)
         await updateDoc(taskRef, {
-        status: task.status
+        
+        status: !task.status
     })}
     catch(error){
         console.log(error.message)
