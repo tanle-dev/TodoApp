@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 20,
         backgroundColor: '#00BFFF',
         paddingVertical: 5,
-        marginTop: 40
     },
     logoContainer:{
         flexDirection: "row",

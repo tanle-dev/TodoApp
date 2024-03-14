@@ -10,6 +10,7 @@ export default function AppLoader() {
 
     useEffect(() => {
         (async() => {
+            SplashScreen.preventAutoHideAsync()
             const taskList = await database.load();
             dispatch(setTasks(taskList))
             SplashScreen.hideAsync()

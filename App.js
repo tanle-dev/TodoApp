@@ -1,7 +1,8 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaView } from 'react-native';
 import { Provider } from "react-redux";
 import AppLoader from "./src/components/AppLoader";
 import { Form } from './src/components/Form/Form';
@@ -16,7 +17,8 @@ export default function App() {
   const Tab = createBottomTabNavigator()
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar/>
       <Header/>
       <Provider store={store}>
         <AppLoader/>
@@ -84,6 +86,6 @@ export default function App() {
           </Tab.Navigator>
         </NavigationContainer>
       </Provider>
-    </View>
+    </SafeAreaView>
   );
 }

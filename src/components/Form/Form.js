@@ -12,6 +12,7 @@ export function Form(props){
     const [taskDescription, setTaskDescription] = useState("")
     const [statusValue, setStatusValue] = useState(false)
     const [errorMessage, setErrorMessage] = useState(false)
+    const [saveData, setSaveData] = useState(false)
     const dispatch = useDispatch()
 
     const handleDescriptionChange = (value) => {
@@ -31,7 +32,9 @@ export function Form(props){
                 status: statusValue,
             }
 
+            setSaveData(true)
             const id = await database.save(newTask)
+            setSaveData(false)
 
             if(id){
                 newTask.id = id
@@ -39,7 +42,7 @@ export function Form(props){
                 
                 setStatusValue(false)
                 setTaskDescription("")
-                navigation.navigate('Tasks')
+                // navigation.navigate('Tasks')
             }
             else{
                 setErrorMessage("Can't save data. Please try again!")
@@ -51,6 +54,14 @@ export function Form(props){
             setErrorMessage(true)
         }
     }
+
+    if(saveData){
+        return (
+            <View>
+                <Text>Saving Data...</Text>
+            </View>
+        )
+    }else
 
     return (
         <View style={styles.container}>
